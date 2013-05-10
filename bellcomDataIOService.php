@@ -39,6 +39,9 @@ class bellcomDataIOService extends Module
       return false;
     }
 
+    // For cronjob
+    Configuration::set( 'BC_DATA_IO_SECRET', Tools::encrypt(Tools::passwdGen()) );
+
     return true;
   }
 
@@ -60,6 +63,8 @@ class bellcomDataIOService extends Module
     {
       return false;
     }
+
+    Configuration::deleteByName( 'BC_DATA_IO_SECRET' );
 
     return true;
   }
